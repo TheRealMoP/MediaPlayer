@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="MediaPlayer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MinWidth="800">
+       <Pivot Title="Mediaplayer">
+            <PivotItem Header="Music" Margin="10,10,10,84">
+                <RelativePanel>
+                    <StackPanel x:Name="panelControlsAudio" Orientation="Horizontal" Margin="0,20,0,20" VerticalAlignment="Top" Height="40">
+                        <Button x:Name="buttonSelectAudioFiles" Content="Select music" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Stretch" Click="buttonSelectAudioFiles_Click"/>
+                        <Button x:Name="buttonPlayAudio" Content="Play" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Stretch" Click="buttonPlayAudioFile_Click" Visibility="Collapsed"/>
+                        <Button x:Name="buttonStopAudio" Content="Stop" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Stretch" Click="buttonStopAudioFile_Click" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <StackPanel x:Name="panelAudioContent" Margin="20, 20, 20, 20" Orientation="Horizontal" RelativePanel.Below="panelControlsAudio">
+                        <ListView x:Name="playlistAudio" Width="600" VerticalAlignment="Stretch" DoubleTapped="playlistAudio_DoubleTapped">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Title}" Width="300"></TextBlock>
+                                        <TextBlock Text="{Binding Duration}" Margin="20,0,0,0" Width="100"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Video">
+                <Button x:Name="buttonSelectVideoFile" Content="Select video" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="buttonSelectVideoFile_Click"/>
+            </PivotItem>
+            <PivotItem Header="Picture">
+                <RelativePanel>
+                    <StackPanel x:Name="panelControls" Orientation="Horizontal" Margin="0,20,0,20" VerticalAlignment="Top" Height="40">
+                        <Button x:Name="buttonSelectImageFile" Content="Select picture" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="buttonSelectImageFile_Click"/>
+                        <Button x:Name="buttonSelectFolder" Content="Select folder" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Stretch" Click="buttonSelectImageFolder_Click"/>
+                    </StackPanel>
+                    <StackPanel x:Name="panelImage" Margin="20, 20, 20, 20" Orientation="Horizontal" RelativePanel.Below="panelControls">
+                        <Image x:Name="image" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        </Image>
+                    </StackPanel>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Webcam" Margin="10,10,10,84">
+                <RelativePanel>
+                    <StackPanel x:Name="panelControlsWebcam" Orientation="Horizontal" Margin="0,20,0,20" VerticalAlignment="Top" Height="40">
+                        <Button x:Name="buttonLaunchWebcam" Content="Launch Webcam" HorizontalAlignment="Left" VerticalAlignment="Stretch" Click="buttonLaunchWebcam_Click"/>    
+                        <Button x:Name="buttonCaptureFoto" Content="Capture foto" Margin="20,0,0,0" Click="buttonCaptureFoto_OnClick"></Button>
+                    </StackPanel>
+                    <StackPanel x:Name="panelWebcam" Margin="20, 20, 20, 20" Orientation="Horizontal" RelativePanel.Below="panelControlsWebcam">
+                        <CaptureElement x:Name="webcamPreview" Stretch="UniformToFill"></CaptureElement>
+                    </StackPanel>
+                    </RelativePanel>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
